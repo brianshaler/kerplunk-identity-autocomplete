@@ -21,7 +21,7 @@ module.exports = (System) ->
         Identity
         .where
           '$or': [
-            {displayName: matcher}
+            {fullName: matcher}
             {userName: matcher}
           ]
         .sort
