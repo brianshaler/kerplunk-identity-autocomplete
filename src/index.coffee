@@ -3,8 +3,8 @@ module.exports = (System) ->
 
   globals:
     public:
-      styles:
-        'kerplunk-identity-autocomplete/css/identity-autocomplete.css': ['/admin/**']
+      css:
+        'kerplunk-identity-autocomplete:input': 'kerplunk-identity-autocomplete/css/identity-autocomplete.css'
 
   init: (next) ->
     searchSocket = System.getSocket 'identity-autocomplete'
