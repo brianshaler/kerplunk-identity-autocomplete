@@ -16,6 +16,7 @@ module.exports = React.createFactory React.createClass
     selectedIdentityId: ''
 
   componentDidMount: ->
+    window.identityAutoComplete = @
     @history = {}
     @cache = []
     @socket = @props.getSocket 'identity-autocomplete'
@@ -40,11 +41,11 @@ module.exports = React.createFactory React.createClass
 
   formatIdentity: (identity) ->
     return '' unless identity?._id
-    identity.displayName ? identity.userName
+    identity.fullName ? identity.nickName
 
   presentIdentity: (identity) ->
     return '' unless identity?._id
-    name = identity.displayName ? identity.userName
+    name = identity.fullName ? identity.nickName
     platforms = identity.platform
     DOM.span null,
       name
@@ -76,8 +77,10 @@ module.exports = React.createFactory React.createClass
       .filter (identity) =>
         return false unless -1 == omit.indexOf identity._id
         allNames = [
-          (identity.displayName ? '')
-          (identity.userName ? '')
+          (identity.nickName ? '')
+          (identity.fullName ? '')
+          (identity.firstName ? '')
+          (identity.lastName ? '')
         ].join ' '
         .replace /\s+/g, ' '
         .replace /(^\s+)|(\s+$)/g, ''
@@ -86,8 +89,10 @@ module.exports = React.createFactory React.createClass
         matcher.test allNames
       .sortBy (identity) ->
         allNames = [
-          (identity.displayName ? '')
-          (identity.userName ? '')
+          (identity.nickName ? '')
+          (identity.fullName ? '')
+          (identity.firstName ? '')
+          (identity.lastName ? '')
         ].join ' '
         .replace /\s+/, ' '
         .replace /(^\s+)|(\s+$)/, ''

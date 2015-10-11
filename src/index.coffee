@@ -20,13 +20,15 @@ module.exports = (System) ->
         matcher = new RegExp queries.join('|'), 'i'
         Identity
         .where
-          '$or': [
+          $or: [
             {fullName: matcher}
-            {userName: matcher}
+            {nickName: matcher}
+            {firstName: matcher}
+            {lastName: matcher}
           ]
         .sort
           lastInteraction: -1
-        .limit 20
+        .limit 50
         .find (err, identities) ->
           if err
             return console.log err?.stack ? err
