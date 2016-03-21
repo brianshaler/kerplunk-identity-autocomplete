@@ -2,7 +2,7 @@
   "name": "kerplunk-identity-autocomplete",
   "displayName": "Contact Autocomplete",
   "description": "An autocomplete component that searches for contacts while you type.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "kerplunk": {
     "permissions": {
       "kerplunk-identity": {
